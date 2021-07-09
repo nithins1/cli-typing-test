@@ -6,7 +6,6 @@ from termcolor import colored
 TIME_LIMIT = 60 # Seconds
 CHARS_PER_WORD = 5
 width, height = os.get_terminal_size()
-width = min(width, 80)
 
 input(colored("""##### Typing Speed Test! #####\n"""
               """##### By: Nithin Singhal #####\n"""
@@ -29,7 +28,6 @@ t_start = time.time()
 while time.time() < t_start + TIME_LIMIT:
     line_length = 0
     line = ""
-    print("  ", end="")
     while True:
         word = randWord() + " "
         # Prevent duplicate words from appearing in line
@@ -42,7 +40,8 @@ while time.time() < t_start + TIME_LIMIT:
 
         line += word
         line_length += len(word)
-    print(colored(line, "cyan"), end="\r")
+    print("  " + line)
+    print("  " + colored(line, "cyan"), end="\r")
     input_line = input("> ")
     print()
 

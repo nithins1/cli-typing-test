@@ -25,7 +25,6 @@ t_start = Time.now
 while (Time.now - t_start).to_i < TIME_LIMIT do
   line_length = 0
   line = ""
-  print("  ")
   while true do
     word = words_list[rand(1000)] + " "
     # Prevent duplicate words from appearing in line
@@ -41,7 +40,8 @@ while (Time.now - t_start).to_i < TIME_LIMIT do
     line += word
     line_length += word.length
   end
-  print (line + "\r").cyan
+  puts "  " + line
+  print ("  " + line + "\r").cyan
   print "> "
   input_line = gets.chomp
   puts
