@@ -42,10 +42,10 @@ while time.time() < t_start + TIME_LIMIT:
 
         line += word
         line_length += len(word)
-    print(colored(line, "blue"))
+    print(colored(line, "cyan"), end="\r")
     input_line = input("> ")
     print()
-    
+
     total_chars_typed += len(input_line)
 
     line = line.split()
