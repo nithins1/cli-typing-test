@@ -3,6 +3,7 @@ require 'colorize'
 
 TIME_LIMIT = 60 # Seconds
 CHARS_PER_WORD = 5
+END_LINE_BUFFER = 5
 height, width = TermInfo.screen_size
 
 puts "##### Typing Speed Test! #####".blue
@@ -33,7 +34,7 @@ while (Time.now - t_start).to_i < TIME_LIMIT do
     end
 
     # Stop adding words when line becomes too long
-    if line_length + word.length >= width - 1
+    if line_length + word.length >= width - END_LINE_BUFFER
       break
     end
 
@@ -44,7 +45,17 @@ while (Time.now - t_start).to_i < TIME_LIMIT do
   print ("  " + line + "\r").cyan
   print "> "
   input_line = gets.chomp
-  puts
+  print "\033[F>" # Go up a line
+  num_end_spaces = input_line.length + 2
+  input_line.split.each do |typed_word|
+    if line.include? typed_word
+      print " " + typed_word.green
+    else
+      print " " + typed_word.red
+    end
+    num_end_spaces -= typed_word.length + 1
+  end
+  puts " " * num_end_spaces + "\n\n"
 
   total_chars_typed += input_line.length
 

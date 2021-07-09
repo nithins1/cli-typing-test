@@ -3,8 +3,11 @@ import random
 import time
 from termcolor import colored
 
+os.system("")
+
 TIME_LIMIT = 60 # Seconds
 CHARS_PER_WORD = 5
+END_LINE_BUFFER = 5
 width, height = os.get_terminal_size()
 
 input(colored("""##### Typing Speed Test! #####\n"""
@@ -35,7 +38,7 @@ while time.time() < t_start + TIME_LIMIT:
             word = randWord() + " "
 
         # Stop adding words when line becomes too long
-        if line_length + len(word) >= width - 1:
+        if line_length + len(word) >= width - END_LINE_BUFFER:
             break
 
         line += word
@@ -43,7 +46,15 @@ while time.time() < t_start + TIME_LIMIT:
     print("  " + line)
     print("  " + colored(line, "cyan"), end="\r")
     input_line = input("> ")
-    print()
+
+    print("\033[F>", end="", flush=True) # Go up a line
+    num_end_spaces = len(input_line) + 2
+    for typed_word in input_line.split():
+        # Reprint each word over original input, with color indicating correctness
+        color = "green" if typed_word in line else "red"
+        print(colored(" " + typed_word, color), end="")
+        num_end_spaces -= len(typed_word) + 1
+    print(" " * num_end_spaces + "\n")
 
     total_chars_typed += len(input_line)
 
