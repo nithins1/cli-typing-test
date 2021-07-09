@@ -1,7 +1,7 @@
 require 'terminfo'
 require 'colorize'
 
-TIME_LIMIT = 1 # Seconds
+TIME_LIMIT = 60 # Seconds
 CHARS_PER_WORD = 5
 height, width = TermInfo.screen_size
 
@@ -58,8 +58,6 @@ while (Time.now - t_start).to_i < TIME_LIMIT do
     else
       mispelled_words << word
     end
-    #puts "Correct words typed: " + correct_words_typed.to_s
-    #puts "Total words printed: " + total_words_printed.to_s
   end
 end
 t_end = Time.now
