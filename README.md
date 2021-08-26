@@ -1,4 +1,4 @@
-## CLI Typing Test (WIP)
+## CLI Typing Test
 
 ### What it does:
 - You will be given a 60 second typing test.
