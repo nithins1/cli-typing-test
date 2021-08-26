@@ -19,12 +19,11 @@ This can be run in Python or Ruby.
 
 #### Python:
 - Install Python 3
-- Install termcolor (`pip install termcolor`)
+- Install dependencies (execute `pip install -r requirements.txt`)
 
 #### Ruby:
 - Install Ruby 2.6.5
-- Install terminfo (`gem install terminfo`)
-- Install colorize (`gem install colorize`)
+- Install dependencies (execute `bundle install`)
 
 ### How to run:
 `python typingspeed.py`
